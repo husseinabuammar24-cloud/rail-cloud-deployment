@@ -81,7 +81,7 @@ railpulse-challenge-azure/
 │                                                                                 │
 │   ┌─────────────────────────────────────────────────────────────────────────┐   │
 │   │ Azure Function App (func-railpulse-etl-hussein)                         │   │
-│   │ Plan: Flex Consumption (Serverless) | Runtime: Python 3.11             │   │
+│   │ Plan: Flex Consumption (Serverless) | Runtime: Python 3.11              │   │
 │   │ Region: France Central                                                  │   │
 │   │                                                                         │   │
 │   │   ┌─────────────────────────────────────────────────────────────────┐   │   │
@@ -132,13 +132,13 @@ railpulse-challenge-azure/
 The schema follows **Third Normal Form (3NF)** to avoid redundancy across high-frequency time-series records.
 
 ```
-   +-----------------------+              +-----------------------+
-   |       stations        |              |       vehicles        |
-   +-----------------------+              +-----------------------+
-   | PK  station_id  (INT) |              | PK  vehicle_id  (INT) |
-   |     station_name(VARCHAR)            |     vehicle_name(VARCHAR)
-   |     station_uri (VARCHAR)            +-----------+-----------+
-   +-----------+-----------+                          |
+   +--------------------------+         +--------------------------+
+   |       stations           |         |       vehicles           |
+   +--------------------------          +--------------------------+
+   | PK  station_id  (INT)    |         | PK  vehicle_id  (INT)    | 
+   |     station_name(VARCHAR)|         |     vehicle_name(VARCHAR)|
+   |     station_uri (VARCHAR)|         +-------------+------------+
+   +-----------+--------------+                       |
                |                                      |
                | 1                                    | 1
                | N                                    | N
@@ -248,6 +248,3 @@ ORDER BY l.fetched_at DESC;
 - [ ] **Nice-to-have:** Multi-hub expansion (Brussel-Centraal, Antwerpen-Centraal, Gent-Sint-Pieters, Liège-Guillemins)
 - [ ] **Nice-to-have:** Idempotency / deduplication logic on repeated timer runs
 
----
-
-*"Sometimes that light at the end of the tunnel is a train." — Charles Barkley*
