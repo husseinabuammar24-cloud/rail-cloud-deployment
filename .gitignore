@@ -22,6 +22,15 @@ __pycache__/
 .python_packages/
 bin/
 obj/
-.vscode/
+
 .DS_Store
 railpulse.db
+local.settings.json
+
+
+.venv/
+__pycache__/
+*.db
+.git/
+.vscode/
+local.settings.json
