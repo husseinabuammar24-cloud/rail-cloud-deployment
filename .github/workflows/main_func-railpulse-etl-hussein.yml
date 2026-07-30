@@ -68,3 +68,5 @@ jobs:
           app-name: 'func-railpulse-etl-hussein'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
+          sku: 'flexconsumption'
+          remote-build: 'true'
