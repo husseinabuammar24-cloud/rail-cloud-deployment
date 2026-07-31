@@ -244,7 +244,9 @@ ORDER BY l.fetched_at DESC;
 - [x] Deploy HTTP-triggered Python Function
 - [x] Verify end-to-end ingestion (iRail → Azure SQL)
 - [x] Document schema and architecture in this README
-- [ ] **Nice-to-have:** Timer Trigger (CRON `0 */15 * * * *`) for automated polling
-- [ ] **Nice-to-have:** Multi-hub expansion (Brussel-Centraal, Antwerpen-Centraal, Gent-Sint-Pieters, Liège-Guillemins)
-- [ ] **Nice-to-have:** Idempotency / deduplication logic on repeated timer runs
+- [x] **Nice-to-have:** Timer Trigger (`LiveboardTimer`, CRON `0 */15 * * * *`) for automated polling, deployed and enabled
+- [x] **Nice-to-have:** Multi-hub expansion — `LiveboardTimer` polls Brussel-Centraal, Antwerpen-Centraal, Gent-Sint-Pieters, and Liège-Guillemins every run
+- [x] **Nice-to-have:** Idempotency logic — checks for an existing (station_id, vehicle_id, scheduled_time) row before inserting, so repeated timer runs never create duplicates
+
+Both `LiveboardFetch` (HTTP) and `LiveboardTimer` (Timer) are confirmed live and Enabled in the Azure Portal Functions list.
 
