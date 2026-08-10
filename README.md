@@ -23,8 +23,9 @@
 9. [Security](#security)
 10. [Cost Optimization](#cost-optimization)
 11. [Verification](#verification)
-12. [Roadmap](#roadmap)
-13. [Project Timeline](#project-timeline)
+12. [Power BI Dashboard Setup](#power-bi-dashboard-setup)
+13. [Roadmap](#roadmap)
+14. [Project Timeline](#project-timeline)
 
 ---
 
@@ -355,6 +356,38 @@ ORDER BY l.fetched_at DESC;
 ```
 
 **Result:** `HTTP 200 OK` — *"Inserted 27 liveboard records for Leuven"*, confirmed by the join query above returning correctly linked station/vehicle/record rows.
+
+---
+
+## Power BI Dashboard Setup
+
+To visualize `railpulse-db` in Power BI and keep it in sync automatically, connect a dataset to the Azure SQL server and configure scheduled refresh.
+
+### Authenticate the data source
+
+1. In the workspace, hover over the **RailPulse Dataset** row to reveal its action icons.
+2. Click the **`...`** (More options) icon on that row.
+3. Select **Settings** from the menu.
+4. Expand **Data source credentials** and click **Edit credentials**.
+5. Set **Authentication method** to **Basic**, then enter the SQL login (`dbadmin` + database password) for `railpulse-srv-west.database.windows.net`.
+
+### Configure scheduled refresh
+
+1. In the same Settings panel, expand **Scheduled refresh**.
+2. Toggle **Configure a refresh schedule** to **On**.
+3. Choose a **Refresh frequency** — **Daily** or **Hourly**.
+4. Click **Add another time** to add time slots (e.g. 8:00 AM, 9:00 AM, 12:00 PM).
+   > Pro licenses allow up to 8 time slots per day; Premium allows up to 48.
+5. Scroll down and click **Apply** to save the schedule.
+
+### Verify the refresh
+
+1. Back in the workspace, click **Refresh now** (circular arrow icon) next to **RailPulse Dataset**.
+2. A "refresh in progress" popup confirms the schedule is active and Power BI is pulling from `railpulse-db`. Click **Close**.
+3. Watch the **Refreshed** column in the workspace content list — it updates from "Refreshing..." to a completed timestamp once done.
+4. Open the **RailPulse Dataset** report; the visuals now reflect the latest data ingested by the Azure Function.
+
+**Status:** Verified working — scheduled refresh is live and the dashboard automatically syncs with `railpulse-db` on the configured schedule.
 
 ---
 
