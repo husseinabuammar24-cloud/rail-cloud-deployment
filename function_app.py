@@ -122,10 +122,10 @@ def LiveboardFetch(req: func.HttpRequest) -> func.HttpResponse:
 
 
 # ---------------------------------------------------------------------------
-# Timer Trigger — automated, every 15 minutes, across all MAJOR_HUBS
+# Timer Trigger — DISABLED. Was automated every 15 minutes across MAJOR_HUBS.
 # CRON format: {second} {minute} {hour} {day} {month} {day-of-week}
 # ---------------------------------------------------------------------------
-@app.timer_trigger(schedule="0 */15 * * * *", arg_name="mytimer", run_on_startup=False)
+# @app.timer_trigger(schedule="0 */15 * * * *", arg_name="mytimer", run_on_startup=False)
 def LiveboardTimer(mytimer: func.TimerRequest) -> None:
     if mytimer.past_due:
         logging.info("Timer trigger is running late.")
